@@ -71,6 +71,15 @@ This is different from the proxy `api-keys` you manage inside the UI (those are 
 If you connect from a non-localhost browser, the server must allow remote management (e.g. `allow-remote-management: true`).  
 Check the CLI Proxy API server documentation/config comments for the full authentication rules, server-side limits, and edge cases.
 
+If the server keeps updating `management.html` from GitHub in the background, enable "Disable Panel Auto Updates" in Config Panel -> Remote Management, or add this to `config.yaml`:
+
+```yaml
+remote-management:
+  disable-auto-update-panel: true
+```
+
+This prevents background replacement of an existing management panel; the server may still download the panel the first time it is missing.
+
 ## What you can manage (mapped to the UI pages)
 
 - **Dashboard**: connection status, server version/build date, quick counts, model availability snapshot.
@@ -82,6 +91,7 @@ Check the CLI Proxy API server documentation/config comments for the full authen
 - **Auth Files**: upload/download/delete JSON credentials, filter/search/pagination, runtime-only indicators, view supported models per credential (when the server supports it), manage OAuth excluded models (supports `*` wildcards), configure OAuth model alias mappings.
 - **OAuth**: start OAuth/device flows for Codex, Anthropic/Claude, Antigravity, Gemini CLI, Kimi, and xAI/Grok; poll status; submit callback URLs or xAI/Grok displayed codes; import Vertex JSON credentials and iFlow cookies.
 - **Quota Management**: manage quota limits and usage for Claude, Antigravity, Codex, Gemini CLI, and other providers.
+- **Usage**: requests/tokens charts (hour/day), per-API and per-model breakdown, cached/reasoning token breakdown, RPM/TPM windows, and optional local model pricing for cost estimation.
 - **Logs**: tail logs with incremental polling, auto-refresh, search, hide management traffic, clear logs; download request error log files.
 - **System**: quick links, update check, request logging toggle, local login data cleanup, and fetch `/v1/models` (grouped view). Requires at least one proxy API key to query models.
 

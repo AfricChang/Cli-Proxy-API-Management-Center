@@ -71,6 +71,15 @@ npm run build
 当你从非 localhost 的浏览器访问时，服务端通常需要开启远程管理（例如 `allow-remote-management: true`）。  
 完整鉴权规则、服务端限制与边界情况请参考 CLI Proxy API 服务端文档或配置注释。
 
+如果服务端会后台自动从 GitHub 更新 `management.html`，可在“配置面板 → 远程管理”开启“禁用面板自动更新”，或在 `config.yaml` 中加入：
+
+```yaml
+remote-management:
+  disable-auto-update-panel: true
+```
+
+这只会阻止已存在的管理面板被后台自动更新；首次缺失时服务端仍可下载面板文件。
+
 ## 功能一览（按页面对应）
 
 - **仪表盘**：连接状态、服务版本/构建时间、关键数量概览、可用模型概览。
@@ -82,6 +91,7 @@ npm run build
 - **认证文件**：上传/下载/删除 JSON 凭据，筛选/搜索/分页，标记 runtime-only；查看单个凭据可用模型（依赖后端支持）；管理 OAuth 排除模型（支持 `*` 通配符）；配置 OAuth 模型别名映射。
 - **OAuth**：对 Codex、Anthropic/Claude、Antigravity、Gemini CLI、Kimi、xAI/Grok 发起 OAuth/设备码流程并轮询状态；支持提交回调 URL 或 xAI/Grok 页面显示的 code；包含 Vertex JSON 凭据导入与 iFlow Cookie 导入。
 - **配额管理**：管理 Claude、Antigravity、Codex、Gemini CLI 等提供商的配额上限与使用情况。
+- **使用统计**：按小时/天图表、按 API 与按模型统计、缓存/推理 Token 拆分、RPM/TPM 时间窗、可选本地保存的模型价格用于费用估算。
 - **日志**：增量拉取日志、自动刷新、搜索、隐藏管理端流量、清空日志；下载请求错误日志文件。
 - **系统信息**：快捷链接、版本检查、请求日志开关、本地登录信息清理，以及拉取 `/v1/models` 并分组展示（需要至少一个代理 API Key 才能查询模型）。
 

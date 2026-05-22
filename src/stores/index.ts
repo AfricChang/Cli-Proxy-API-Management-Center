@@ -7,6 +7,7 @@ export { useThemeStore } from './useThemeStore';
 export { useLanguageStore } from './useLanguageStore';
 export { useAuthStore } from './useAuthStore';
 export { useConfigStore } from './useConfigStore';
+export { useUsageStatsStore, USAGE_STATS_STALE_TIME_MS } from './useUsageStatsStore';
 export { useModelsStore } from './useModelsStore';
 export { useQuotaStore } from './useQuotaStore';
 export { useOpenAIEditDraftStore } from './useOpenAIEditDraftStore';
